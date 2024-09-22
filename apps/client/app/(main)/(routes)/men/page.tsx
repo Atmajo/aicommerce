@@ -1,64 +1,35 @@
-import { Button } from "@/components/ui/button";
-import { herodata, productdata } from "@/data";
+import { productdata } from "@/data";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+import Pathlink from "../_components/pathlink";
 
-export default function Home() {
+const Page = () => {
   return (
-    <section className="px-5 md:px-10 py-5 overflow-hidden" id="home">
-      <div className="">
-        {herodata.map(({ img, gender, tag, bg }, _id) => (
-          <div
-            key={_id}
-            className={`flex justify-center items-center flex-col gap-10 px-10 md:px-40 py-10 w-full h-full bg-[#faedeb]`}
-          >
-            <p className="font-light">{gender}</p>
-            <h1 className="text-6xl text-center font-bold leading-[80px]">
-              {tag}
-            </h1>
-            <Link href="/shop">
-              <Button>Shop Collections</Button>
-            </Link>
-            {/* <div>
-              <Image
-                src={"/bg-balls.svg"}
-                alt="bg-balls"
-                width={900}
-                height={900}
-                className="absolute top-20 right-32 -rotate-[28deg] md:hidden lg:block"
-              />
-              <Image
-                src={img}
-                alt="hero"
-                width={600}
-                height={600}
-                className="relative"
-              />
-            </div> */}
-          </div>
-        ))}
+    <section className="px-5 md:px-10 py-5 overflow-hidden">
+      <div className="flex flex-row gap-2 mb-5">
+        <Pathlink title="Home" url="/" />
+        <Pathlink title="Men" url="/men" />
       </div>
-
-      <div className="flex flex-col justify-center items-center my-20">
-        <p className="font-light text-center">Summer Collection</p>
-
-        <h1 className="text-3xl font-bold mt-5 mb-20">Popular T-Shirts</h1>
-        <div className="flex flex-wrap basis-auto justify-center gap-5 w-full">
-          {productdata.map(
-            (
-              {
-                img,
-                title,
-                price,
-                url,
-                gender,
-                discount,
-                avaibleColour,
-                sizes,
-              },
-              _id
-            ) => (
+      <h1 className="text-3xl font-bold mt-5 mb-20">Men's Category</h1>
+      <div className="flex flex-wrap basis-auto justify-center gap-10 w-full">
+        {productdata.map(
+          (
+            {
+              img,
+              title,
+              id,
+              price,
+              gender,
+              avaibleColour,
+              sizes,
+              discount,
+              url,
+            },
+            _id
+          ) =>
+            gender === "Men" && (
               <div key={_id} className="">
                 <div className="relative">
                   <Link href={url} className="">
@@ -106,9 +77,10 @@ export default function Home() {
                 </div>
               </div>
             )
-          )}
-        </div>
+        )}
       </div>
     </section>
   );
-}
+};
+
+export default Page;

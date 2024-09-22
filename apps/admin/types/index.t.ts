@@ -1,4 +1,9 @@
-interface MainLayoutProps {
+interface MainlayoutProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+interface AuthlayoutProps {
   children: React.ReactNode;
   className?: string;
 }

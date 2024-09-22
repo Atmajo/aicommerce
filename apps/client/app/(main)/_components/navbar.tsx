@@ -9,7 +9,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { navdata } from "@/data";
+import { cartVal, navdata } from "@/data";
+import { Button } from "@/components/ui/button";
 
 const poppins = Poppins({ weight: ["400"], subsets: ["latin"] });
 
@@ -19,18 +20,30 @@ const Navbar = () => {
       <nav className="hidden md:flex px-10 py-5 justify-between items-center">
         <div className="flex gap-5">
           {navdata.map((item, index) => (
-            <Link href={item.url} key={index} className="">
+            <Link href={item.url} key={index} className="hover:underline underline-offset-8">
               {item.title}
             </Link>
           ))}
         </div>
         <div className="flex justify-center items-center gap-6">
-          <h1 className="font-bold">$0.00</h1>
-          <div className="relative">
-            <ShoppingBasket size={32} />
-            <p className="flex justify-center items-center rounded-full bg-black absolute text-white px-2 -top-2 left-4">0</p>
-          </div>
-          <AI size={28} />
+          <Button
+            className="text-4xl font-bold"
+            variant={"custom1"}
+            size={"icon"}
+          >
+            ♡
+          </Button>
+          <Link href="/cart">
+            <Button className="relative" variant={"custom1"} size={"icon"}>
+              <ShoppingBasket size={32} />
+              <p className="flex justify-center items-center rounded-full bg-black absolute text-white px-2 -top-2 left-4">
+                {cartVal}
+              </p>
+            </Button>
+          </Link>
+          <Button variant={"custom1"} size={"icon"}>
+            <AI size={28} />
+          </Button>
         </div>
       </nav>
 
